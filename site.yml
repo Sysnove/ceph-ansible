@@ -2,30 +2,30 @@
 # Defines deployment design and assigns role to server groups
 
 - hosts:
-  - mons
-  - osds
-  - mdss
-  - rgws
+  - ceph-mon
+  - ceph-osd
+  - ceph-mds
+  - ceph-rgw
   sudo: True
   roles:
   - ceph-common
 
-- hosts: mons
+- hosts: ceph-mon
   sudo: True
   roles:
   - ceph-mon
 
-- hosts: osds
+- hosts: ceph-osd
   sudo: True
   roles:
   - ceph-osd
 
-- hosts: mdss
+- hosts: ceph-mds
   sudo: True
   roles:
   - ceph-mds
 
-- hosts: rgws
+- hosts: ceph-rgw
   sudo: True
   roles:
   - ceph-radosgw

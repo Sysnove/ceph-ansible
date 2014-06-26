@@ -10,15 +10,15 @@
 # /!\ DO NOT FORGET TO CHANGE THE RELEASE VERSION FIRST! /!\
 
 - hosts:
-  - mons
-  - osds
-  - mdss
-  - rgws
+  - ceph-mon
+  - ceph-osd
+  - ceph-mds
+  - ceph-rgw
   sudo: True
   roles:
   - ceph-common
 
-- hosts: mons
+- hosts: ceph-mon
   serial: 1
   sudo: True
   roles:
@@ -27,7 +27,7 @@
   - name: restart monitor(s)
     service: name=ceph state=restarted args=mon
 
-- hosts: osds
+- hosts: ceph-osd
   serial: 1
   sudo: True
   roles:
@@ -40,7 +40,7 @@
     service: name=ceph state=restarted args=osd
     when: ansible_distribution == "Debian"
 
-- hosts: mdss
+- hosts: ceph-mds
   serial: 1
   sudo: True
   roles:
