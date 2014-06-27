@@ -2,3 +2,10 @@
 
 - name: "update apt cache"
   action: apt update-cache=yes
+
+- name: Restart Shorewall
+  service: name=shorewall state=restarted
+
+- name: Restart Shorewall6
+  service: name=shorewall6 state=restarted
+
