@@ -12,3 +12,9 @@ ACCEPT all:{{ hostvars[host]['ansible_default_ipv6']['address'] }} fw tcp 6800:7
 {% endif %}
 {% endfor %}
 
+{% for host in groups['ceph-clients'] %}
+{% if 'ansible_default_ipv6' in hostvars[host] and hostvars[host]['ansible_default_ipv6']['scope'] == "global" %}
+ACCEPT all:{{ hostvars[host]['ansible_default_ipv6']['address'] }} fw tcp 6789
+ACCEPT all:{{ hostvars[host]['ansible_default_ipv6']['address'] }} fw tcp 6800:7100
+{% endif %}
+{% endfor %}
