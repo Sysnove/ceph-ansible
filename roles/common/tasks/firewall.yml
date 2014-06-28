@@ -7,6 +7,7 @@
     owner=root
     group=root
   notify: Restart Shorewall
+  when: configure_firewall == True and not ipv6_only
 
 - name: Deploy Shorewall6 configuration.
   template: >
@@ -16,3 +17,4 @@
     owner=root
     group=root
   notify: Restart Shorewall6
+  when: configure_firewall == True and 'ipv6' in hostvars[inventory_hostname]

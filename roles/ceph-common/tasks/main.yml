@@ -6,4 +6,4 @@
   when: ansible_os_family == 'RedHat'
 - include: Debian.yml
   when: ansible_os_family == 'Debian'
-- include: firewall.yml
+- include: firewall.yml tags=firewall
