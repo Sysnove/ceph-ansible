@@ -12,9 +12,16 @@ ACCEPT all:{{ hostvars[host]['ansible_default_ipv4']['address'] }} fw tcp 6800:7
 {% endif %}
 {% endfor %}
 
+# Ceph clients
 {% for host in groups['ceph-clients'] %}
 {% if not hostvars[host]['ipv6_only'] %}
 ACCEPT all:{{ hostvars[host]['ansible_default_ipv4']['address'] }} fw tcp 6789
 ACCEPT all:{{ hostvars[host]['ansible_default_ipv4']['address'] }} fw tcp 6800:7100
 {% endif %}
+{% endfor %}
+
+# Whitelist
+{% for whitelist_ip in whitelist_ips %}
+ACCEPT all:{{ whitelist_ip }} fw tcp 6789
+ACCEPT all:{{ whitelist_ip }} fw tcp 6800:7100
 {% endfor %}

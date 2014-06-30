@@ -1,6 +1,9 @@
 ---
 # Defines deployment design and assigns role to server groups
 
+- hosts: ceph-clients # Gather facts for firewall
+  sudo: yes
+
 - hosts:
   - ceph-mon
   - ceph-osd
