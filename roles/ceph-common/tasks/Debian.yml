@@ -38,3 +38,6 @@
 
 - name: Generate ceph configuration file
   template: src=ceph.conf.j2 dest=/etc/ceph/ceph.conf owner=root group=root mode=0644
+
+- name: Link ceph admin key
+  file: state=link path=/etc/ceph/client.admin.keyring src=/etc/ceph/ceph.client.admin.keyring
